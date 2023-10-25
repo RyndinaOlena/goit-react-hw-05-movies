@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-export const MoviesList = ({ movies, location }) => {
-
-    console.log(location)
+export const MoviesList = ({ movies }) => {
+    const location = useLocation()
     return (
         <div>
             <ul>

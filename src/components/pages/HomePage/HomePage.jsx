@@ -5,7 +5,6 @@ import css from '../style.module.css'
 import { MoviesList } from 'components/MoviesList/MoviesList'
 const HomePage = () => {
     const [popularFilm, setPopularFilm] = useState([])
-    const location = useLocation()
 
 
     useEffect(() => {
@@ -35,7 +34,7 @@ const HomePage = () => {
     return (
         <div>
             <h1>List of popular movies</h1>
-            {popularFilm.length > 0 && <MoviesList location={location} movies={popularFilm} />}
+            {popularFilm.length > 0 && <MoviesList movies={popularFilm} />}
         </div >
     )
 

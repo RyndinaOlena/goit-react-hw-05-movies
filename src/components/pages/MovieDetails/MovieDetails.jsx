@@ -12,7 +12,7 @@ const MovieDetails = () => {
 
     const location = useLocation()
     console.log(location)
-    const backLinkRef = useRef(location?.state.from ?? '/')
+    const backLinkRef = useRef(location?.state?.from ?? '/')
 
 
 
@@ -46,7 +46,7 @@ const MovieDetails = () => {
 
     return (
         <div>
-            <Link to={backLinkRef}>Go back</Link>
+            <Link to={backLinkRef.current}>Go back</Link>
             <h2>Information about movie</h2>
             {movieDetails && (
                 <div>

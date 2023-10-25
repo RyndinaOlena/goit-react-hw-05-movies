@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios';
 import { ReactComponent as IconSearch } from './icon/search.svg'
-import { Link, useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import { MoviesList } from 'components/MoviesList/MoviesList';
 const Movies = () => {
     const [searchParams, setsearchParams] = useSearchParams()
     const [movies, setMovies] = useState([])
-    const location = useLocation();
+
 
 
     const query = searchParams.get('query')
 
-    const makeRequest = () => {
+    const makeRequest = useCallback((query) => {
         const options = {
             method: 'GET',
             url: 'https://api.themoviedb.org/3/search/movie',
@@ -37,20 +37,15 @@ const Movies = () => {
             .catch(error => {
                 console.error(error);
             });
-    };
+    }, []);
 
-
-
-    const handleInputChange = (event) => {
-        const searchValue = event.currentTarget.value
-        console.log(searchValue)
-        setsearchParams({ query: searchValue })
-
-    }
+    useEffect(() => {
+        makeRequest(query)
+    }, [query, makeRequest])
 
     const handelFormSubmit = (event) => {
         event.preventDefault()
-        makeRequest()
+        setsearchParams({ query: event.target.elements.searchMovie.value })
     }
 
     return (
@@ -59,7 +54,7 @@ const Movies = () => {
             <form onSubmit={handelFormSubmit}>
                 <label>
                     <p> Search movie</p>
-                    <input type='text' name='searchMovie' onChange={handleInputChange} required />
+                    <input type='text' name='searchMovie' required />
                 </label>
                 <button type='submit'>Search <IconSearch /></button>
             </form>
