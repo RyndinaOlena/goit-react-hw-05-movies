@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios';
 import { ReactComponent as IconSearch } from './icon/search.svg'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { MoviesList } from 'components/MoviesList/MoviesList';
 const Movies = () => {
     const [searchParams, setsearchParams] = useSearchParams()

@@ -7,7 +7,6 @@ import { useRef } from 'react';
 
 const MovieDetails = () => {
     const [movieDetails, setMovieDetails] = useState(null);
-    const [error, setError] = useState(null);
     const { movieId } = useParams();
 
     const location = useLocation()
@@ -39,7 +38,6 @@ const MovieDetails = () => {
                 console.log(response.data);
             })
             .catch(error => {
-                setError(error.message);
                 console.error(error);
             });
     }, [movieId]);
